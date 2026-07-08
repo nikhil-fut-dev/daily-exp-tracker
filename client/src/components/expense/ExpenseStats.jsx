@@ -37,23 +37,25 @@ export default function ExpenseStats({ expenses }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-8">
       {cards.map((card) => (
         <div
           key={card.title}
-          className="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:-translate-y-2 transition"
+          className="bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-6 hover:-translate-y-2 transition"
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
-              <p className="text-slate-400">{card.title}</p>
+              <p className="text-xs sm:text-sm text-slate-400">
+  {card.title}
+</p>
 
-              <h2 className="text-3xl font-bold text-white mt-3">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2 sm:mt-3 break-all">
                 {card.value}
               </h2>
             </div>
 
             <div
-              className={`${card.color} w-14 h-14 rounded-2xl flex items-center justify-center text-white`}
+              className={`${card.color} w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center text-white shrink-0`}
             >
               {card.icon}
             </div>

@@ -8,7 +8,7 @@ export default function IncomeTable({
 }) {
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
-      <div className="overflow-x-auto">
+      <div className="hidden lg:block overflow-x-auto">
         <table className="w-full">
           <thead className="bg-slate-800">
             <tr>
@@ -107,6 +107,75 @@ export default function IncomeTable({
             )}
           </tbody>
         </table>
+      </div>
+      {/* Mobile View */}
+      <div className="block lg:hidden p-4 space-y-4">
+        {records.length === 0 ? (
+          <div className="text-center text-slate-400 py-8">No Income Found</div>
+        ) : (
+          records.map((item) => (
+            <div
+              key={item._id}
+              className="rounded-2xl border border-slate-800 bg-slate-800 p-4"
+            >
+              <div className="flex justify-between items-start">
+                <h3 className="font-semibold text-white text-lg">
+                  {item.title}
+                </h3>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setEditingId(item._id);
+
+                      setForm({
+                        title: item.title,
+                        amount: item.amount,
+                        category: item.category,
+                        note: item.note || "",
+                        date: item.date?.split("T")[0],
+                      });
+                    }}
+                    className="w-9 h-9 rounded-lg bg-blue-600 flex justify-center items-center"
+                  >
+                    <Pencil size={16} className="text-white" />
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="w-9 h-9 rounded-lg bg-red-600 flex justify-center items-center"
+                  >
+                    <Trash2 size={16} className="text-white" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-4 space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Amount</span>
+
+                  <span className="text-green-400 font-semibold">
+                    ₹{item.amount}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Category</span>
+
+                  <span className="text-indigo-300">{item.category}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Date</span>
+
+                  <span className="text-white">
+                    {new Date(item.date).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

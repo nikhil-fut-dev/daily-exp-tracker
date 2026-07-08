@@ -8,7 +8,7 @@ export default function ExpenseTable({
 }) {
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
-      <div className="overflow-x-auto">
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full">
           <thead className="bg-slate-800">
             <tr>
@@ -96,6 +96,70 @@ export default function ExpenseTable({
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="md:hidden divide-y divide-slate-800">
+        {records.length === 0 ? (
+          <div className="p-6 text-center text-slate-500">No Expense Found</div>
+        ) : (
+          records.map((item) => (
+            <div key={item._id} className="p-5 space-y-4">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-white">{item.title}</h3>
+
+                  <p className="text-sm text-slate-400 mt-1">
+                    {new Date(item.date).toLocaleDateString()}
+                  </p>
+                </div>
+
+                <span className="bg-red-600/20 text-red-400 px-3 py-1 rounded-full">
+                  ₹{item.amount}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-2 bg-indigo-600/20 px-3 py-1 rounded-full text-sm">
+                  <Tag size={14} />
+                  {item.category}
+                </span>
+
+                <span className="inline-flex items-center gap-2 bg-cyan-600/20 px-3 py-1 rounded-full text-sm">
+                  <CreditCard size={14} />
+                  {item.paymentMethod}
+                </span>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setEditingId(item._id);
+
+                    setForm({
+                      title: item.title,
+                      amount: item.amount,
+                      category: item.category,
+                      paymentMethod: item.paymentMethod || "",
+                      note: item.note || "",
+                      date: item.date?.split("T")[0],
+                    });
+                  }}
+                  className="flex-1 bg-blue-600 py-3 rounded-xl text-white flex items-center justify-center gap-2"
+                >
+                  <Pencil size={18} />
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(item._id)}
+                  className="flex-1 bg-red-600 py-3 rounded-xl text-white flex items-center justify-center gap-2"
+                >
+                  <Trash2 size={18} />
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

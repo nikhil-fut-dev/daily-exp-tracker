@@ -2,7 +2,7 @@ import { Search, ArrowUpDown } from "lucide-react";
 
 export default function IncomeToolbar({ search, setSearch, sort, setSort }) {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-8">
+    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-5 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Search */}
 
@@ -23,7 +23,7 @@ export default function IncomeToolbar({ search, setSearch, sort, setSort }) {
               border
               border-slate-700
               rounded-xl
-              py-3
+              py-3 text-sm sm:text-base
               pl-12
               pr-4
               text-white
@@ -53,7 +53,7 @@ export default function IncomeToolbar({ search, setSearch, sort, setSort }) {
               border
               border-slate-700
               rounded-xl
-              py-3
+              py-3 text-sm sm:text-base
               pl-12
               pr-4
               text-white

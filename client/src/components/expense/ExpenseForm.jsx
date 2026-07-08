@@ -15,17 +15,17 @@ export default function ExpenseForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-slate-900 border border-slate-800 rounded-3xl p-6 mb-8 shadow-xl"
+      className="bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-6 mb-8 shadow-xl"
     >
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-white">
           {editingId ? "Update Expense" : "Add New Expense"}
         </h2>
 
-        <p className="text-slate-400 mt-2">Fill all expense details.</p>
+        <p className="text-sm sm:text-base text-slate-400 mt-2">Fill all expense details.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <Input
           icon={<FileText size={18} />}
           placeholder="Title"
@@ -68,10 +68,10 @@ export default function ExpenseForm({
         placeholder="Note..."
         value={form.note}
         onChange={(e) => setForm({ ...form, note: e.target.value })}
-        className="w-full mt-5 bg-slate-800 border border-slate-700 rounded-xl p-4 text-white outline-none"
+        className="w-full mt-5 bg-slate-800 border border-slate-700 rounded-xl p-3 sm:p-4 text-sm sm:text-base text-white outline-none focus:ring-2 focus:ring-red-500 resize-none"
       />
 
-      <button className="mt-6 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl transition">
+      <button className="mt-6 w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl transition font-medium">
         {editingId ? "Update Expense" : "Add Expense"}
       </button>
     </form>
@@ -90,7 +90,7 @@ function Input({ icon, type = "text", placeholder, value, onChange }) {
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-white outline-none focus:ring-2 focus:ring-red-500"
+        className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-sm sm:text-base text-white outline-none focus:ring-2 focus:ring-red-500"
       />
     </div>
   );

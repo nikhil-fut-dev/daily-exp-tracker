@@ -15,20 +15,21 @@ const app = express();
 
 // Connect Database
 connectDB();
-const cloudinary = require("./config/cloudinary");
+const cloudinary =
+  require("./config/cloudinary");
 
-cloudinary.api
-  .ping()
-  .then(() => console.log("Cloudinary Connected"))
-  .catch((err) => console.log(err));
+cloudinary.api.ping()
+  .then(() =>
+    console.log(
+      "Cloudinary Connected"
+    )
+  )
+  .catch((err) =>
+    console.log(err)
+  );
 
 // Middleware
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  }),
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
