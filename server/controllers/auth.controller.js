@@ -129,8 +129,6 @@ exports.profile = async (req, res) => {
 };
 
 exports.updateProfile = async (req, res) => {
-  console.log("BODY:", req.body);
-  console.log("FILE:", req.file);
   try {
     const updateData = {
       fullName: req.body.fullName,
