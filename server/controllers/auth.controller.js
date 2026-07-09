@@ -294,7 +294,6 @@ exports.sendOtp = async (req, res) => {
         </div>
       `,
     });
-    console.log("Mail sent successfully");
 
     res.status(200).json({
       success: true,
