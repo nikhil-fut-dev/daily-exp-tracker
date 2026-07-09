@@ -9,9 +9,9 @@ exports.registerValidator = [
     .withMessage("Full Name must be at least 3 characters"),
 
   body("email")
+    .trim()
     .isEmail()
-    .withMessage("Invalid Email Address")
-    .normalizeEmail(),
+    .withMessage("Invalid Email Address"),
 
   body("password")
     .isLength({ min: 6 })
