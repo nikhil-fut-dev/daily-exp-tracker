@@ -271,6 +271,7 @@ exports.sendOtp = async (req, res) => {
     });
 
     // Send Email
+    console.log("Trying to send mail...");
     await transporter.sendMail({
       from: `"Expense Tracker" <${process.env.EMAIL_FROM}>`,
       to: email,
@@ -293,12 +294,15 @@ exports.sendOtp = async (req, res) => {
         </div>
       `,
     });
+    console.log("Mail sent successfully");
 
     res.status(200).json({
       success: true,
       message: "OTP sent successfully",
     });
   } catch (error) {
+    console.error("SEND OTP ERROR:", error);
+
     res.status(500).json({
       success: false,
       message: error.message,
