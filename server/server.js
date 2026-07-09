@@ -13,6 +13,8 @@ const connectDB = require("./config/db");
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // Connect Database
 connectDB();
 const cloudinary = require("./config/cloudinary");
@@ -23,7 +25,12 @@ cloudinary.api
   .catch((err) => console.log(err));
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
