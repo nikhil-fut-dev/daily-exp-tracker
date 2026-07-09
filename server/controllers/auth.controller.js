@@ -272,7 +272,7 @@ exports.sendOtp = async (req, res) => {
 
     // Send Email
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"Expense Tracker" <${process.env.EMAIL_FROM}>`,
       to: email,
       subject: "Expense Tracker Password Reset OTP",
 
