@@ -24,13 +24,26 @@ cloudinary.api
   .then(() => console.log("Cloudinary Connected"))
   .catch((err) => console.log(err));
 
+// Allowed Frontend URLs
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://cbnk-expe-tracker.onrender.com",
+];
+
 // Middleware
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
