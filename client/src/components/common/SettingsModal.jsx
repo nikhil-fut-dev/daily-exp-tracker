@@ -164,16 +164,16 @@ export default function SettingsModal({ open, onClose }) {
         <div
           onClick={onClose}
           className="
-  fixed
-  inset-0
-  z-[100]
-  bg-black/60
-  backdrop-blur-sm
-  flex
-  justify-end
-  md:justify-center
-  items-stretch
-  md:items-center
+fixed
+inset-0
+z-[100]
+bg-black/60
+backdrop-blur-sm
+flex
+justify-center
+items-center
+p-3
+overflow-y-auto
 "
         >
           <div
@@ -186,20 +186,16 @@ border-slate-700
 shadow-2xl
 
 w-full
-md:max-w-4xl
+max-w-4xl
 
-h-full
-md:h-auto
+max-h-[95vh]
 
-md:max-h-[92vh]
+rounded-3xl
 
-md:rounded-3xl
+flex
+flex-col
 
-rounded-none
-
-md:overflow-hidden
-
-overflow-y-auto
+overflow-hidden
 
 animate-slide
 "
@@ -229,15 +225,33 @@ animate-slide
 
             <div
               className="
-    grid
-    md:grid-cols-3
-    overflow-y-auto
-    flex-1
-  "
+grid
+md:grid-cols-3
+flex-1
+overflow-y-auto
+min-h-0
+custom-scrollbar
+"
             >
               {/* Left */}
 
-              <div className="border-b md:border-b-0 md:border-r border-slate-800 p-6 sm:p-8 flex flex-col items-center">
+              <div
+                className="
+border-b
+md:border-b-0
+md:border-r
+border-slate-800
+
+p-6
+sm:p-8
+
+flex
+flex-col
+items-center
+
+shrink-0
+"
+              >
                 <img
                   src={preview}
                   alt=""
@@ -261,7 +275,16 @@ animate-slide
 
               {/* Right */}
 
-              <div className="md:col-span-2 p-5 sm:p-8">
+              <div
+                className="
+md:col-span-2
+
+p-5
+sm:p-8
+
+overflow-y-auto
+"
+              >
                 <h3 className="text-white text-lg font-semibold mb-6">
                   Personal Information
                 </h3>
@@ -336,7 +359,22 @@ animate-slide
                   />
                 </div>
 
-                <div className="sticky bottom-0 bg-slate-900 pt-6">
+                <div
+className="
+sticky
+bottom-0
+
+bg-slate-900
+
+border-t
+border-slate-800
+
+pt-5
+pb-2
+
+mt-8
+"
+>
                   <button
                     onClick={handleSave}
                     disabled={loading || passwordLoading}
