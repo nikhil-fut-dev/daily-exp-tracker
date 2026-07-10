@@ -5,6 +5,9 @@ exports.getDashboard = async (req, res) => {
   try {
     const userId = req.user.id;
 
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+
     const incomes = await Income.find({ user: userId }).sort({ date: -1 });
 
     const expenses = await Expense.find({ user: userId }).sort({ date: -1 });
@@ -19,7 +22,7 @@ exports.getDashboard = async (req, res) => {
     const totalSavings = totalBalance;
 
     // Recent Transactions
-    const recentTransactions = [
+    const allTransactions = [
       ...incomes.map((item) => ({
         id: item._id,
         title: item.title,
@@ -37,9 +40,16 @@ exports.getDashboard = async (req, res) => {
         category: item.category,
         date: item.date,
       })),
-    ]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 10);
+    ].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const totalTransactions = allTransactions.length;
+
+    const totalPages = Math.ceil(totalTransactions / limit);
+
+    const recentTransactions = allTransactions.slice(
+      (page - 1) * limit,
+      page * limit,
+    );
 
     const monthlyChart = [];
 
@@ -92,6 +102,15 @@ exports.getDashboard = async (req, res) => {
         incomeCount: incomes.length,
 
         expenseCount: expenses.length,
+
+        pagination: {
+          page,
+          limit,
+          totalPages,
+          totalTransactions,
+          hasNext: page < totalPages,
+          hasPrev: page > 1,
+        },
       },
     });
   } catch (error) {

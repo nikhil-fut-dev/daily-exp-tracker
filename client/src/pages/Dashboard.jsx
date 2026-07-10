@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getDashboard } from "../api/dashboardApi";
 import DashboardSkeleton from "../components/common/DashboardSkeleton";
 
@@ -12,18 +12,21 @@ import QuickStats from "../components/dashboard/QuickStats";
 export default function Dashboard() {
   const [dashboard, setDashboard] = useState(null);
 
-  useEffect(() => {
-    fetchDashboard();
-  }, []);
+  const [page, setPage] = useState(1);
+  const limit = 5;
 
-  const fetchDashboard = async () => {
+  useEffect(() => {
+    fetchDashboard(page);
+  }, [page]);
+
+  const fetchDashboard = useCallback(async (currentPage = 1) => {
     try {
-      const response = await getDashboard();
+      const response = await getDashboard(currentPage, limit);
       setDashboard(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   if (!dashboard) {
     return (
@@ -54,7 +57,12 @@ export default function Dashboard() {
 
       <div className="grid xl:grid-cols-3 gap-6">
         <div className="xl:col-span-2">
-          <RecentTransactions transactions={dashboard.recentTransactions} />
+          <RecentTransactions
+            transactions={dashboard.recentTransactions}
+            pagination={dashboard.pagination}
+            page={page}
+            setPage={setPage}
+          />
         </div>
 
         <QuickStats
