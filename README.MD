@@ -395,10 +395,3 @@ with intelligent insights, automation, analytics, and secure financial managemen
 ---
 
 ⭐ If you like this project, consider giving it a star on GitHub.
-
-
-![React](https://img.shields.io/badge/React-19-blue)
-
-![Node](https://img.shields.io/badge/Node.js-green)
-
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen)
