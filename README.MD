@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="./client/public/db.jpeg" width="140" style="border-radius:50%;" alt="Nikhil Kumar"/>
+<img src="./client/public/db2.jpeg" width="140" style="border-radius:50%;" alt="Nikhil Kumar"/>
 
 # Nikhil Kumar
 
