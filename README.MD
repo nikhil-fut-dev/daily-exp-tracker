@@ -1,3 +1,9 @@
+![React](https://img.shields.io/badge/React-19-blue)
+
+![Node](https://img.shields.io/badge/Node.js-green)
+
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen)
+
 # 💰 Expense Tracker - Full Stack Finance Management Application
 
 A professional full-stack **Expense Tracker SaaS Application** built to manage personal finances, track income & expenses, analyze spending habits, and provide smart financial insights.
@@ -393,3 +399,10 @@ with intelligent insights, automation, analytics, and secure financial managemen
 ---
 
 ⭐ If you like this project, consider giving it a star on GitHub.
+
+
+![React](https://img.shields.io/badge/React-19-blue)
+
+![Node](https://img.shields.io/badge/Node.js-green)
+
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen)
