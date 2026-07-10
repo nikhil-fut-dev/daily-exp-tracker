@@ -4,7 +4,7 @@
 
 <img src="./client/public/db2.jpeg" width="140" style="border-radius:50%;" alt="Nikhil Kumar"/>
 
-# Nikhil Kumar
+# NIKHIL Web-Dev
 
 ### 🚀 Full Stack Web Developer | MERN Stack Enthusiast | UI/UX Designer
 
