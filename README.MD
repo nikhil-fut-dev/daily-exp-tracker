@@ -1,11 +1,3 @@
-# 💰 Expense Tracker - Full Stack Finance Management Application
-
-A professional full-stack **Expense Tracker SaaS Application** built to manage personal finances, track income & expenses, analyze spending habits, and provide smart financial insights.
-
-This project has evolved from a basic CRUD application into a production-ready finance management platform with authentication, analytics, cloud storage, and scalable architecture.
-
----
-
 ## 👨‍💻 Author
 
 <div align="center">
@@ -77,6 +69,14 @@ I continuously explore new technologies, best development practices, and industr
 > 💡 *"Great software is built with clean code, continuous learning, and attention to user experience."*
 
 ⭐ If you found this project helpful, don't forget to **Star** the repository and share your feedback!
+
+---
+
+# 💰 Expense Tracker - Full Stack Finance Management Application
+
+A professional full-stack **Expense Tracker SaaS Application** built to manage personal finances, track income & expenses, analyze spending habits, and provide smart financial insights.
+
+This project has evolved from a basic CRUD application into a production-ready finance management platform with authentication, analytics, cloud storage, and scalable architecture.
 
 ---
 
