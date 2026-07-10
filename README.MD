@@ -6,6 +6,80 @@ This project has evolved from a basic CRUD application into a production-ready f
 
 ---
 
+## 👨‍💻 Author
+
+<div align="center">
+
+<img src="https://avatars.githubusercontent.com/u/YOUR_GITHUB_ID?v=4" width="140" style="border-radius:50%;" alt="Nikhil Kumar"/>
+
+# Nikhil Kumar
+
+### 🚀 Full Stack Web Developer | MERN Stack Enthusiast | UI/UX Designer
+
+Passionate about building **modern, scalable, and user-friendly web applications** using the **MERN Stack**. I enjoy transforming ideas into high-performance digital products with clean architecture, responsive design, and intuitive user experiences.
+
+I continuously explore new technologies, best development practices, and industry standards to create applications that are secure, efficient, and production-ready.
+
+</div>
+
+---
+
+### 💼 Skills
+
+- ⚛️ React.js & Vite
+- 🟢 Node.js & Express.js
+- 🍃 MongoDB & Mongoose
+- 🎨 Tailwind CSS
+- 🔐 JWT Authentication
+- ☁️ Cloudinary Integration
+- 📊 Chart.js / Recharts
+- 📧 Nodemailer
+- 🚀 REST API Development
+- 🌐 Responsive UI/UX Design
+- 🔧 Git & GitHub
+
+---
+
+### 🌟 What I Love Building
+
+- 💰 Finance & Expense Tracker Applications
+- 📊 Analytics Dashboards
+- 🏢 Enterprise Web Applications
+- 🛒 E-Commerce Platforms
+- 🎓 Educational Portals
+- 📱 Responsive Landing Pages
+- ⚡ Modern Admin Panels
+
+---
+
+### 📫 Connect With Me
+
+<p align="left">
+<a href="https://github.com/YOUR_GITHUB_USERNAME">
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+
+<a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+
+<a href="mailto:YOUR_EMAIL@gmail.com">
+<img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+
+<a href="https://portfolio-link.com">
+<img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+</p>
+
+---
+
+> 💡 *"Great software is built with clean code, continuous learning, and attention to user experience."*
+
+⭐ If you found this project helpful, don't forget to **Star** the repository and share your feedback!
+
+---
+
 # 🚀 Live Project
 
 ![React](https://img.shields.io/badge/React-19-blue)  ![Node](https://img.shields.io/badge/Node.js-green)  ![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen)
