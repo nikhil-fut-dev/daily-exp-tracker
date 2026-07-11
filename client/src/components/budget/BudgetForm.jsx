@@ -21,23 +21,23 @@ export default function BudgetForm({ open, onClose, onSubmit, editingBudget }) {
     }
   }, [editingBudget]);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
 
     if (!form.category || !form.limit) {
       return toast.error("Please fill all fields");
     }
 
-    onSubmit(form);
+    await onSubmit(form);
 
-    onClose();
-
-    setForm({
-      category: "",
-      limit: "",
-      month: new Date().getMonth() + 1,
-      year: new Date().getFullYear(),
-    });
+    if (!editingBudget) {
+      setForm({
+        category: "",
+        limit: "",
+        month: new Date().getMonth() + 1,
+        year: new Date().getFullYear(),
+      });
+    }
   };
 
   if (!open) return null;
