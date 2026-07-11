@@ -12,6 +12,8 @@ import VerifyOtp from "../pages/VerifyOtp";
 import ResetPassword from "../pages/ResetPassword";
 import Budget from "../pages/Budget";
 import Settings from "../pages/Settings/Settings";
+import Reports from "../pages/Reports";
+import Categories from "../pages/Categories";
 
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
@@ -53,6 +55,10 @@ export default function AppRoutes() {
         <Route path="/change-password" element={<ChangePassword />} />
 
         <Route path="/settings" element={<Settings />} />
+
+        <Route path="/reports" element={<Reports />} />
+
+        <Route path="/categories" element={<Categories />} />
       </Route>
     </Routes>
   );

@@ -48,7 +48,6 @@ const sidebarMenu = [
         label: "Categories",
         icon: FolderTree,
         path: "/categories",
-        disabled: true,
       },
       {
         id: "budgets",
@@ -62,7 +61,6 @@ const sidebarMenu = [
         label: "Reports",
         icon: FileText,
         path: "/reports",
-        disabled: true,
       },
     ],
   },

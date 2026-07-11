@@ -19,6 +19,8 @@ import IncomeForm from "../components/income/IncomeForm";
 import IncomeTable from "../components/income/IncomeTable";
 import IncomePagination from "../components/income/IncomePagination";
 
+import DeleteConfirmModal from "../components/common/DeleteConfirmModal";
+
 export default function Income() {
   const [incomes, setIncomes] = useState([]);
 
@@ -31,6 +33,14 @@ export default function Income() {
     note: "",
     date: "",
   });
+
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const [selectedIncomeId, setSelectedIncomeId] = useState(null);
+
+  const [selectedIncomeTitle, setSelectedIncomeTitle] = useState("");
+
+  const [deleting, setDeleting] = useState(false);
 
   const [editingId, setEditingId] = useState(null);
 
@@ -102,12 +112,31 @@ export default function Income() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id, title) => {
+    setSelectedIncomeId(id);
+    setSelectedIncomeTitle(title);
+    setDeleteOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!selectedIncomeId) return;
+
     try {
-      await deleteIncome(id);
+      setDeleting(true);
+
+      await deleteIncome(selectedIncomeId);
+
+      toast.success("Income Deleted Successfully");
+
       fetchIncome();
-    } catch (error) {
-      console.log(error);
+      setDeleteOpen(false);
+      setSelectedIncomeId(null);
+      setSelectedIncomeTitle("");
+      
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -182,6 +211,19 @@ export default function Income() {
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
+      />
+
+      <DeleteConfirmModal
+        open={deleteOpen}
+        loading={deleting}
+        title="Delete Income"
+        message={`Are you sure you want to delete "${selectedIncomeTitle}"?`}
+        onClose={() => {
+          setDeleteOpen(false);
+          setSelectedIncomeId(null);
+          setSelectedIncomeTitle("");
+        }}
+        onConfirm={confirmDelete}
       />
     </div>
   );

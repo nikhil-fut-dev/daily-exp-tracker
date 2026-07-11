@@ -85,7 +85,7 @@ export default function ExpenseTable({
                     </button>
 
                     <button
-                      onClick={() => handleDelete(item._id)}
+                      onClick={() => handleDelete(item._id, item.title)}
                       className="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-700 flex items-center justify-center"
                     >
                       <Trash2 size={18} />
@@ -150,7 +150,7 @@ export default function ExpenseTable({
                 </button>
 
                 <button
-                  onClick={() => handleDelete(item._id)}
+                  onClick={() => handleDelete(item._id, item.title)}
                   className="flex-1 bg-red-600 py-3 rounded-xl text-white flex items-center justify-center gap-2"
                 >
                   <Trash2 size={18} />

@@ -95,7 +95,7 @@ export default function IncomeTable({
                       </button>
 
                       <button
-                        onClick={() => handleDelete(item._id)}
+                        onClick={() => handleDelete(item._id, item.title)}
                         className="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-700 flex items-center justify-center transition"
                       >
                         <Trash2 size={18} className="text-white" />
@@ -142,7 +142,7 @@ export default function IncomeTable({
                   </button>
 
                   <button
-                    onClick={() => handleDelete(item._id)}
+                    onClick={() => handleDelete(item._id, item.title)}
                     className="w-9 h-9 rounded-lg bg-red-600 flex justify-center items-center"
                   >
                     <Trash2 size={16} className="text-white" />

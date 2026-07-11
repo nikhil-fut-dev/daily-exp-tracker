@@ -19,6 +19,8 @@ import ExpenseForm from "../components/expense/ExpenseForm";
 import ExpenseTable from "../components/expense/ExpenseTable";
 import ExpensePagination from "../components/expense/ExpensePagination";
 
+import DeleteConfirmModal from "../components/common/DeleteConfirmModal";
+
 export default function Expense() {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +33,14 @@ export default function Expense() {
     note: "",
     date: "",
   });
+
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const [selectedExpenseId, setSelectedExpenseId] = useState(null);
+
+  const [selectedExpenseTitle, setSelectedExpenseTitle] = useState("");
+
+  const [deleting, setDeleting] = useState(false);
 
   const [editingId, setEditingId] = useState(null);
 
@@ -104,13 +114,30 @@ export default function Expense() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id, title) => {
+    setSelectedExpenseId(id);
+    setSelectedExpenseTitle(title);
+    setDeleteOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!selectedExpenseId) return;
+
     try {
-      await deleteExpense(id);
+      setDeleting(true);
+
+      await deleteExpense(selectedExpenseId);
+
+      toast.success("Expense Deleted Successfully");
 
       fetchExpense();
-    } catch (error) {
-      console.log(error);
+      setDeleteOpen(false);
+      setSelectedExpenseId(null);
+      setSelectedExpenseTitle("");
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Something went wrong");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -195,6 +222,19 @@ export default function Expense() {
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
+      />
+
+      <DeleteConfirmModal
+        open={deleteOpen}
+        loading={deleting}
+        title="Delete Expense"
+        message={`Are you sure you want to delete "${selectedExpenseTitle}"?`}
+        onClose={() => {
+          setDeleteOpen(false);
+          setSelectedExpenseId(null);
+          setSelectedExpenseTitle("");
+        }}
+        onConfirm={confirmDelete}
       />
     </div>
   );
