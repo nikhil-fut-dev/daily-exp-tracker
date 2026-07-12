@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+/*import { useEffect, useState, useCallback } from "react";
 
 import { getNotifications, getUnreadCount } from "../api/notificationApi";
 
@@ -37,3 +37,4 @@ export default function useNotifications() {
     refreshNotifications: fetchNotifications,
   };
 }
+*/

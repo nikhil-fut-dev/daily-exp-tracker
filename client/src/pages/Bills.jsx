@@ -3,6 +3,7 @@ import useBills from "../hooks/useBills";
 
 import { addBill, updateBill, deleteBill } from "../api/billApi";
 import toast from "react-hot-toast";
+import { useNotification } from "../context/NotificationContext";
 
 import { exportToExcel } from "../utils/exportExcel";
 import { exportToPDF } from "../utils/exportPdf";
@@ -15,6 +16,8 @@ import DeleteConfirmModal from "../components/common/DeleteConfirmModal";
 
 export default function Bills() {
   const { bills, loading, fetchBills } = useBills();
+
+  const { refreshNotifications } = useNotification();
 
   const [open, setOpen] = useState(false);
 
@@ -56,7 +59,10 @@ export default function Bills() {
         toast.success("Bill Added Successfully");
       }
 
-      fetchBills();
+      await fetchBills();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
 
       setOpen(false);
 
@@ -76,7 +82,10 @@ export default function Bills() {
 
       toast.success("Bill Deleted Successfully");
 
-      fetchBills();
+      await fetchBills();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
 
       setDeleteOpen(false);
 

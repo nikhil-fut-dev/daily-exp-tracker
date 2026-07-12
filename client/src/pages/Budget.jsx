@@ -12,7 +12,11 @@ import { addBudget, updateBudget, deleteBudget } from "../api/budgetApi";
 
 import toast from "react-hot-toast";
 
+import { useNotification } from "../context/NotificationContext";
+
 export default function Budgets() {
+  const { refreshNotifications } = useNotification();
+
   const { budgets, loading, fetchBudgets } = useBudgets();
 
   const [open, setOpen] = useState(false);
@@ -43,7 +47,11 @@ export default function Budgets() {
 
       setSelectedBudget(null);
 
+      // Refresh Budgets
       await fetchBudgets();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
     } catch (err) {
       toast.error(err.response?.data?.message || "Delete Failed");
     }
@@ -61,10 +69,14 @@ export default function Budgets() {
         toast.success("Budget Created Successfully");
       }
 
+      // Refresh Budgets
+      await fetchBudgets();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
+
       setOpen(false);
       setEditingBudget(null);
-
-      await fetchBudgets();
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
     }

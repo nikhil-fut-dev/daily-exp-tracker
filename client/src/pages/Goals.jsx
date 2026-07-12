@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import toast from "react-hot-toast";
+import { useNotification } from "../context/NotificationContext";
 
 import useGoals from "../hooks/useGoals";
 
@@ -14,6 +16,8 @@ import DeleteConfirmModal from "../components/common/DeleteConfirmModal";
 
 export default function Goals() {
   const { goals, loading, fetchGoals } = useGoals();
+
+  const { refreshNotifications } = useNotification();
 
   const [open, setOpen] = useState(false);
 
@@ -57,7 +61,10 @@ export default function Goals() {
       setOpen(false);
       setEditingGoal(null);
 
-      fetchGoals();
+      await fetchGoals();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
     }
@@ -74,7 +81,10 @@ export default function Goals() {
       setSavingOpen(false);
       setSelectedGoal(null);
 
-      fetchGoals();
+      await fetchGoals();
+
+      // 🔔 Goal Completed Notification
+      await refreshNotifications();
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
     }
@@ -93,7 +103,10 @@ export default function Goals() {
       setDeleteOpen(false);
       setSelectedGoal(null);
 
-      fetchGoals();
+      await fetchGoals();
+
+      // 🔔 Refresh Notifications
+      await refreshNotifications();
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
