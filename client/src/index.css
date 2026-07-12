@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body{
   margin:0;
   background:#f5f7fb;
   font-family:Arial, sans-serif;
+  overscroll-behavior-x: none;
 }
 
 /* Premium Scrollbar */

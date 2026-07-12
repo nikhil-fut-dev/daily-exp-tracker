@@ -20,8 +20,11 @@ export default function NotificationDrawer({
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-screen w-full max-w-md flex-col border-l border-slate-800 bg-slate-950 shadow-2xl transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
+        aria-hidden={!open}
+        className={`fixed top-0 right-0 z-50 flex h-screen w-full max-w-md flex-col border-l border-slate-800 bg-slate-950 shadow-2xl transition-all duration-300 ease-in-out ${
+          open
+            ? "translate-x-0 opacity-100 pointer-events-auto"
+            : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
