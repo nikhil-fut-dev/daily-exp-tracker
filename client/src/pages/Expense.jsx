@@ -12,6 +12,8 @@ import {
 import { exportToExcel } from "../utils/exportExcel";
 import { exportToPDF } from "../utils/exportPdf";
 
+import { useNotification } from "../context/NotificationContext";
+
 import ExpenseHeader from "../components/expense/ExpenseHeader";
 import ExpenseStats from "../components/expense/ExpenseStats";
 import ExpenseToolbar from "../components/expense/ExpenseToolbar";
@@ -50,6 +52,8 @@ export default function Expense() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const { refreshNotifications } = useNotification();
+
   const recordsPerPage = 5;
 
   useEffect(() => {
@@ -84,6 +88,9 @@ export default function Expense() {
         setEditingId(null);
       } else {
         await addExpense(form);
+
+        // 🔔 Refresh notifications after new expense
+        await refreshNotifications();
       }
 
       setForm({
@@ -95,7 +102,7 @@ export default function Expense() {
         date: "",
       });
 
-      fetchExpense();
+      await fetchExpense();
 
       toast.success(
         isEditing

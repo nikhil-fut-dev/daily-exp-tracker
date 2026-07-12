@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import App from "./App";
 
 import { AuthProvider } from "./context/AuthContext";
+import { NotificationProvider } from "./context/NotificationContext";
 
 import "./index.css";
 
@@ -17,38 +18,40 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          toastOptions={{
-            duration: 3000,
+        <NotificationProvider>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+            toastOptions={{
+              duration: 3000,
 
-            style: {
-              background: "#0f172a",
-              color: "#fff",
-              border: "1px solid #334155",
-              borderRadius: "14px",
-              padding: "14px 18px",
-              fontSize: "14px",
-            },
-
-            success: {
-              iconTheme: {
-                primary: "#22c55e",
-                secondary: "#fff",
+              style: {
+                background: "#0f172a",
+                color: "#fff",
+                border: "1px solid #334155",
+                borderRadius: "14px",
+                padding: "14px 18px",
+                fontSize: "14px",
               },
-            },
 
-            error: {
-              iconTheme: {
-                primary: "#ef4444",
-                secondary: "#fff",
+              success: {
+                iconTheme: {
+                  primary: "#22c55e",
+                  secondary: "#fff",
+                },
               },
-            },
-          }}
-        />
 
-        <App />
+              error: {
+                iconTheme: {
+                  primary: "#ef4444",
+                  secondary: "#fff",
+                },
+              },
+            }}
+          />
+
+          <App />
+        </NotificationProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
