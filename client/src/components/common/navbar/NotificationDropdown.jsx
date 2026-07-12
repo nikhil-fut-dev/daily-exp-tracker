@@ -1,25 +1,75 @@
-import { Bell } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+import useNotifications from "../../../hooks/useNotifications";
+
+import NotificationBell from "../../notification/NotificationBell";
+import NotificationDrawer from "../../notification/NotificationDrawer";
+
+import {
+  markAllAsRead,
+  deleteNotification,
+} from "../../../api/notificationApi";
 
 export default function NotificationDropdown() {
-  return (
-    <button
-      className="
-      relative
-      w-11
-      h-11
-      rounded-xl
-      bg-slate-800
-      hover:bg-slate-700
-      flex
-      items-center
-      justify-center
-      transition-all
-      duration-300
-    "
-    >
-      <Bell size={20} className="text-slate-300" />
+  const [openNotifications, setOpenNotifications] = useState(false);
 
-      <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500" />
-    </button>
+  const { notifications, unreadCount, loading, refreshNotifications } =
+    useNotifications();
+
+  // Open Drawer
+  const handleOpen = async () => {
+    setOpenNotifications(true);
+
+    // Drawer open hote hi latest notifications fetch
+    await refreshNotifications();
+  };
+
+  // Close Drawer
+  const handleClose = () => {
+    setOpenNotifications(false);
+  };
+
+  // Mark All Read
+  const handleMarkAllRead = async () => {
+    try {
+      await markAllAsRead();
+
+      await refreshNotifications();
+
+      toast.success("All notifications marked as read");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to mark notifications");
+    }
+  };
+
+  // Delete One
+  const handleDelete = async (id) => {
+    try {
+      await deleteNotification(id);
+
+      await refreshNotifications();
+
+      toast.success("Notification deleted");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to delete notification");
+    }
+  };
+
+  return (
+    <>
+      <NotificationBell unreadCount={unreadCount} onClick={handleOpen} />
+
+      <NotificationDrawer
+        open={openNotifications}
+        onClose={handleClose}
+        notifications={notifications}
+        loading={loading}
+        onMarkAllRead={handleMarkAllRead}
+        onDelete={handleDelete}
+      />
+    </>
   );
 }

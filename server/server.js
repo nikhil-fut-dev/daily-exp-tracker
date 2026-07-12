@@ -14,6 +14,7 @@ const categoryRoutes = require("./routes/category.routes");
 const goalRoutes = require("./routes/goal.routes");
 const calendarRoutes = require("./routes/calendar.routes");
 const billRoutes = require("./routes/bill.routes");
+const notificationRoutes = require("./routes/notification.routes");
 
 const connectDB = require("./config/db");
 
@@ -78,6 +79,9 @@ app.use("/api/bills", billRoutes);
 app.use("/api/calendar", calendarRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/report", reportRoutes);
+
+app.use("/api/notifications", notificationRoutes);
+
 app.use("/api/auth", authRoutes);
 
 // Error Middleware

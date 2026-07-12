@@ -1,5 +1,6 @@
 const Budget = require("../models/Budget");
 const Expense = require("../models/Expense");
+const { checkBudgetNotification } = require("../utils/notificationHelper");
 
 // Add Budget
 exports.addBudget = async (req, res) => {
@@ -77,6 +78,12 @@ exports.getAllBudgets = async (req, res) => {
         } else if (percentage >= 80) {
           status = "warning";
         }
+
+        await checkBudgetNotification({
+          user: req.user.id,
+          budget,
+          percentage,
+        });
 
         return {
           ...budget.toObject(),
