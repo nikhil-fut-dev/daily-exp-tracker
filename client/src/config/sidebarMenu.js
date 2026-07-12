@@ -4,7 +4,6 @@ import {
   Receipt,
   WalletCards,
   FolderTree,
-  PiggyBank,
   FileText,
   Target,
   Repeat,
@@ -50,13 +49,6 @@ const sidebarMenu = [
         path: "/categories",
       },
       {
-        id: "budgets",
-        label: "Budgets",
-        icon: PiggyBank,
-        path: "/budgets",
-        disabled: true,
-      },
-      {
         id: "reports",
         label: "Reports",
         icon: FileText,
@@ -74,7 +66,6 @@ const sidebarMenu = [
         label: "Goals",
         icon: Target,
         path: "/goals",
-        disabled: true,
       },
       {
         id: "recurring",
@@ -88,7 +79,6 @@ const sidebarMenu = [
         label: "Calendar",
         icon: CalendarDays,
         path: "/calendar",
-        disabled: true,
       },
       {
         id: "notes",

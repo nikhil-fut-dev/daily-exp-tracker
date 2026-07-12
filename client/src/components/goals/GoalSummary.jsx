@@ -1,38 +1,53 @@
-import { Wallet, TrendingDown, PiggyBank } from "lucide-react";
+import { Target, PiggyBank, Wallet, Trophy } from "lucide-react";
 
-export default function BudgetSummary({ budgets }) {
-  const totalBudget = budgets.reduce((sum, item) => sum + (item.limit || 0), 0);
+export default function GoalSummary({ goals }) {
+  const totalTarget = goals.reduce(
+    (sum, item) => sum + (item.targetAmount || 0),
+    0,
+  );
 
-  const totalSpent = budgets.reduce((sum, item) => sum + (item.spent || 0), 0);
+  const totalSaved = goals.reduce(
+    (sum, item) => sum + (item.savedAmount || 0),
+    0,
+  );
 
-  const remaining = totalBudget - totalSpent;
+  const remaining = totalTarget - totalSaved;
+
+  const completed = goals.filter((g) => g.status === "Completed").length;
 
   const cards = [
     {
-      title: "Total Budget",
-      value: `₹${totalBudget.toLocaleString()}`,
+      title: "Target",
+      value: `₹${totalTarget.toLocaleString()}`,
       color: "text-indigo-400",
       bg: "bg-indigo-500/15",
-      icon: Wallet,
+      icon: Target,
     },
     {
-      title: "Spent",
-      value: `₹${totalSpent.toLocaleString()}`,
-      color: "text-red-400",
-      bg: "bg-red-500/15",
-      icon: TrendingDown,
-    },
-    {
-      title: "Remaining",
-      value: `₹${remaining.toLocaleString()}`,
+      title: "Saved",
+      value: `₹${totalSaved.toLocaleString()}`,
       color: "text-green-400",
       bg: "bg-green-500/15",
       icon: PiggyBank,
     },
+    {
+      title: "Remaining",
+      value: `₹${remaining.toLocaleString()}`,
+      color: "text-yellow-400",
+      bg: "bg-yellow-500/15",
+      icon: Wallet,
+    },
+    {
+      title: "Completed",
+      value: completed,
+      color: "text-cyan-400",
+      bg: "bg-cyan-500/15",
+      icon: Trophy,
+    },
   ];
 
   return (
-    <div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       {cards.map((card) => {
         const Icon = card.icon;
 

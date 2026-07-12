@@ -14,6 +14,8 @@ import Budget from "../pages/Budget";
 import Settings from "../pages/Settings/Settings";
 import Reports from "../pages/Reports";
 import Categories from "../pages/Categories";
+import Goals from "../pages/Goals";
+import Calendar from "../pages/Calendar";
 
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
@@ -59,6 +61,10 @@ export default function AppRoutes() {
         <Route path="/reports" element={<Reports />} />
 
         <Route path="/categories" element={<Categories />} />
+
+        <Route path="/goals" element={<Goals />} />
+
+        <Route path="/calendar" element={<Calendar />} />
       </Route>
     </Routes>
   );

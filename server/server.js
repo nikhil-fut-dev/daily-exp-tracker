@@ -11,6 +11,8 @@ const dashboardRoutes = require("./routes/dashboard.routes");
 const budgetRoutes = require("./routes/budget.routes");
 const reportRoutes = require("./routes/report.routes");
 const categoryRoutes = require("./routes/category.routes");
+const goalRoutes = require("./routes/goal.routes");
+const calendarRoutes = require("./routes/calendar.routes");
 
 const connectDB = require("./config/db");
 
@@ -70,6 +72,8 @@ app.use("/api/income", incomeRoutes);
 app.use("/api/expense", expenseRoutes);
 app.use("/api/budget", budgetRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/goals", goalRoutes);
+app.use("/api/calendar", calendarRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/report", reportRoutes);
 app.use("/api/auth", authRoutes);
