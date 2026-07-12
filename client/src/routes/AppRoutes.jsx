@@ -16,6 +16,7 @@ import Reports from "../pages/Reports";
 import Categories from "../pages/Categories";
 import Goals from "../pages/Goals";
 import Calendar from "../pages/Calendar";
+import Bills from "../pages/Bills";
 
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
@@ -65,6 +66,8 @@ export default function AppRoutes() {
         <Route path="/goals" element={<Goals />} />
 
         <Route path="/calendar" element={<Calendar />} />
+
+        <Route path="/bills" element={<Bills />} />
       </Route>
     </Routes>
   );

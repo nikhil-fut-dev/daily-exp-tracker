@@ -67,12 +67,18 @@ const sidebarMenu = [
         icon: Target,
         path: "/goals",
       },
-      {
+      /*{
         id: "recurring",
         label: "Recurring",
         icon: Repeat,
         path: "/recurring",
         disabled: true,
+      },*/
+      {
+        id: "recurring",
+        label: "Recurring",
+        icon: Repeat,
+        path: "/bills",
       },
       {
         id: "calendar",
