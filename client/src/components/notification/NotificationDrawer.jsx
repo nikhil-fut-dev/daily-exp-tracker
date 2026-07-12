@@ -1,4 +1,5 @@
 import { X, CheckCheck, Trash2 } from "lucide-react";
+import { useEffect } from "react";
 
 export default function NotificationDrawer({
   open,
@@ -8,13 +9,31 @@ export default function NotificationDrawer({
   onMarkAllRead,
   onDelete,
 }) {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [open]);
+
   return (
     <>
       {/* Backdrop */}
       {open && (
         <div
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm touch-none"
         />
       )}
 
@@ -55,7 +74,12 @@ export default function NotificationDrawer({
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div
+          className="flex-1 overflow-y-auto overscroll-contain p-4"
+          style={{
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
           {loading ? (
             <p className="text-center text-slate-400">Loading...</p>
           ) : notifications.length === 0 ? (
