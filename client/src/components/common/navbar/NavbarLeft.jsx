@@ -8,8 +8,8 @@ export default function NavbarLeft({ onMenuClick }) {
       </button>
 
       <div>
-        <h1 className="text-xl md:text-2xl font-bold text-white">
-          Welcome Back 👋
+        <h1 className="text-xl md:text-2xl font-bold text-white flex">
+          Welcome Back
         </h1>
 
         <p className="hidden md:block text-sm text-slate-400">
