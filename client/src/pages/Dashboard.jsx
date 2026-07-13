@@ -1,75 +1,51 @@
-import { useCallback, useEffect, useState } from "react";
-import { getDashboard } from "../api/dashboardApi";
-import DashboardSkeleton from "../components/common/DashboardSkeleton";
-
 import DashboardHeader from "../components/dashboard/DashboardHeader";
-import SummaryCards from "../components/dashboard/SummaryCards";
-import MonthlyChart from "../components/dashboard/MonthlyChart";
-import CategoryChart from "../components/dashboard/CategoryChart";
-import RecentTransactions from "../components/dashboard/RecentTransactions";
-import QuickStats from "../components/dashboard/QuickStats";
+import DashboardGrid from "../components/dashboard/DashboardGrid";
+import KPISection from "../components/dashboard/cards/KPISection";
+
+import useDashboard from "../hooks/useDashboard";
+
+import IncomeExpenseChart from "../components/dashboard/charts/IncomeExpenseChart";
+import ExpensePieChart from "../components/dashboard/charts/ExpensePieChart";
+import RecentTransactions from "../components/dashboard/widgets/RecentTransactions";
+import GoalProgress from "../components/dashboard/widgets/GoalProgress";
+import SmartInsights from "../components/dashboard/widgets/SmartInsights";
+//import ActivityTimeline from "../components/dashboard/widgets/ActivityTimeline";
+import BudgetOverview from "../components/dashboard/widgets/BudgetOverview";
 
 export default function Dashboard() {
-  const [dashboard, setDashboard] = useState(null);
+  const { dashboard, loading } = useDashboard();
 
-  const [page, setPage] = useState(1);
-  const limit = 5;
-
-  useEffect(() => {
-    fetchDashboard(page);
-  }, [page]);
-
-  const fetchDashboard = useCallback(async (currentPage = 1) => {
-    try {
-      const response = await getDashboard(currentPage, limit);
-      setDashboard(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  if (!dashboard) {
-    return (
-      <div className="p-8">
-        <DashboardSkeleton />
-      </div>
-    );
+  if (loading) {
+    return <div className="p-10 text-slate-400">Loading Dashboard...</div>;
   }
-
-  const categoryData = Object.entries(dashboard.expenseCategories || {}).map(
-    ([name, value]) => ({
-      name,
-      value,
-    }),
-  );
 
   return (
     <div className="space-y-8">
       <DashboardHeader />
 
-      <SummaryCards summary={dashboard.summary} />
+      <DashboardGrid>
+        <KPISection dashboard={dashboard} />
 
-      <div className="grid xl:grid-cols-2 gap-6">
-        <MonthlyChart data={dashboard.monthlyChart} />
+        <IncomeExpenseChart dashboard={dashboard} />
 
-        <CategoryChart data={categoryData} />
-      </div>
+        <ExpensePieChart dashboard={dashboard} />
 
-      <div className="grid xl:grid-cols-3 gap-6">
-        <div className="xl:col-span-2">
-          <RecentTransactions
-            transactions={dashboard.recentTransactions}
-            pagination={dashboard.pagination}
-            page={page}
-            setPage={setPage}
-          />
+        <RecentTransactions dashboard={dashboard} />
+
+        <GoalProgress dashboard={dashboard} />
+
+        <div className="col-span-12 xl:col-span-6">
+          <SmartInsights dashboard={dashboard} />
         </div>
 
-        <QuickStats
-          incomeCount={dashboard.incomeCount}
-          expenseCount={dashboard.expenseCount}
-        />
-      </div>
+        {/*<div className="col-span-12 xl:col-span-6">
+          <ActivityTimeline dashboard={dashboard} />
+        </div>*/}
+
+        <div className="col-span-12 xl:col-span-6">
+          <BudgetOverview dashboard={dashboard} />
+        </div>
+      </DashboardGrid>
     </div>
   );
 }

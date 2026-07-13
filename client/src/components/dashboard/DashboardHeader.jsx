@@ -1,29 +1,44 @@
 import { CalendarDays } from "lucide-react";
 
 export default function DashboardHeader() {
-  const hour = new Date().getHours();
+  const now = new Date();
 
   const greeting =
-    hour < 12
+    now.getHours() < 12
       ? "Good Morning"
-      : hour < 17
+      : now.getHours() < 18
         ? "Good Afternoon"
         : "Good Evening";
 
-  return (
-    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-      <div>
-        <h1 className="text-4xl font-bold text-white">{greeting}</h1>
+  const date = now.toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
-        <p className="text-slate-400 mt-2">
-          Welcome back to your Expense Tracker Dashboard.
+  return (
+    <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <p className="text-sm text-indigo-400 font-medium">
+          Dashboard Overview
+        </p>
+
+        <h1 className="mt-2 text-3xl font-bold text-white">{greeting}</h1>
+
+        <p className="mt-2 text-slate-400">
+          Welcome back. Here's what's happening with your finances today.
         </p>
       </div>
 
-      <div className="mt-5 lg:mt-0 bg-slate-900 border border-slate-800 rounded-2xl px-5 py-3 flex items-center gap-3">
-        <CalendarDays size={20} className="text-indigo-400" />
+      <div className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900 px-5 py-4">
+        <CalendarDays className="text-indigo-400" size={20} />
 
-        <span className="text-slate-300">{new Date().toDateString()}</span>
+        <div>
+          <p className="text-xs text-slate-400">Today</p>
+
+          <h3 className="font-semibold text-white">{date}</h3>
+        </div>
       </div>
     </div>
   );
