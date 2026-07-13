@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
+
 const colors = [
   "#6366F1",
   "#10B981",
@@ -23,6 +25,8 @@ export default function CategoryForm({
     icon: "Folder",
     color: colors[0],
   });
+
+  useLockBodyScroll(open);
 
   useEffect(() => {
     if (editingCategory) {

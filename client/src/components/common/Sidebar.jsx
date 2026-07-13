@@ -1,8 +1,8 @@
 import sidebarMenu from "../../config/sidebarMenu";
-import { useEffect } from "react";
 
 import SidebarHeader from "./sidebar/SidebarHeader";
 import SidebarSection from "./sidebar/SidebarSection";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 //import PremiumCard from "./sidebar/PremiumCard";
 //import UserCard from "./sidebar/UserCard";
 
@@ -15,26 +15,7 @@ export default function Sidebar({
   const navItem =
     "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 font-medium";
 
-  useEffect(() => {
-    // Mobile/Tablet par hi body scroll lock karo
-    if (window.innerWidth >= 1024) return;
-
-    if (sidebarOpen) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      document.body.style.touchAction = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      document.body.style.touchAction = "";
-    };
-  }, [sidebarOpen]);
+  useLockBodyScroll(sidebarOpen);
   return (
     <>
       {sidebarOpen && (

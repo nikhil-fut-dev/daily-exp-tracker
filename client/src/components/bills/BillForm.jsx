@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
+
 export default function BillForm({ open, onClose, onSubmit, editingBill }) {
   const initialState = {
     title: "",
@@ -14,6 +16,8 @@ export default function BillForm({ open, onClose, onSubmit, editingBill }) {
   };
 
   const [form, setForm] = useState(initialState);
+
+  useLockBodyScroll(open);
 
   useEffect(() => {
     if (editingBill) {

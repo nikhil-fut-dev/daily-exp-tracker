@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
+
 export default function BudgetForm({ open, onClose, onSubmit, editingBudget }) {
   const [form, setForm] = useState({
     category: "",
@@ -9,6 +11,8 @@ export default function BudgetForm({ open, onClose, onSubmit, editingBudget }) {
     month: new Date().getMonth() + 1,
     year: new Date().getFullYear(),
   });
+
+  useLockBodyScroll(open);
 
   useEffect(() => {
     if (editingBudget) {
@@ -20,6 +24,8 @@ export default function BudgetForm({ open, onClose, onSubmit, editingBudget }) {
       });
     }
   }, [editingBudget]);
+
+  
 
   const submit = async (e) => {
     e.preventDefault();
