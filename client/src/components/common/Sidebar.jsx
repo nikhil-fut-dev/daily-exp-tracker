@@ -3,8 +3,8 @@ import { useEffect } from "react";
 
 import SidebarHeader from "./sidebar/SidebarHeader";
 import SidebarSection from "./sidebar/SidebarSection";
-import PremiumCard from "./sidebar/PremiumCard";
-import UserCard from "./sidebar/UserCard";
+//import PremiumCard from "./sidebar/PremiumCard";
+//import UserCard from "./sidebar/UserCard";
 
 export default function Sidebar({
   sidebarOpen,
@@ -96,11 +96,11 @@ lg:translate-x-0
 
         {/* Upgrade Card */}
 
-        <PremiumCard sidebarCollapsed={sidebarCollapsed} />
+        {/*<PremiumCard sidebarCollapsed={sidebarCollapsed} />*/}
 
         {/* Logout */}
 
-        <UserCard sidebarCollapsed={sidebarCollapsed} />
+        {/*<UserCard sidebarCollapsed={sidebarCollapsed} />*/}
       </aside>
     </>
   );
