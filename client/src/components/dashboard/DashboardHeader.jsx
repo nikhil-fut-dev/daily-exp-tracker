@@ -5,10 +5,10 @@ export default function DashboardHeader() {
 
   const greeting =
     hour < 12
-      ? "Good Morning ☀️"
+      ? "Good Morning"
       : hour < 17
-        ? "Good Afternoon 🌤️"
-        : "Good Evening 🌙";
+        ? "Good Afternoon"
+        : "Good Evening";
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
