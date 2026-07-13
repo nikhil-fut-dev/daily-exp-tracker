@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import SettingsModal from "../components/common/SettingsModal";
 
 import Sidebar from "../components/common/Sidebar";
 import Navbar from "../components/common/Navbar";
+import SettingsModal from "../components/common/SettingsModal";
 
 export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -12,18 +12,20 @@ export default function MainLayout() {
     JSON.parse(localStorage.getItem("sidebarCollapsed")) || false,
   );
 
-  const toggleSidebar = () => {
-    const newState = !sidebarCollapsed;
-
-    setSidebarCollapsed(newState);
-
-    localStorage.setItem("sidebarCollapsed", JSON.stringify(newState));
-  };
-
   const [settingsOpen, setSettingsOpen] = useState(false);
 
+  const toggleSidebar = () => {
+    const next = !sidebarCollapsed;
+
+    setSidebarCollapsed(next);
+
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(next));
+  };
+
   return (
-    <div className="min-h-screen bg-slate-950 flex">
+    <div className="h-dvh overflow-hidden bg-slate-950">
+      {/* Sidebar */}
+
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
@@ -31,26 +33,51 @@ export default function MainLayout() {
         toggleSidebar={toggleSidebar}
       />
 
+      {/* Content */}
+
       <div
-        className={`flex-1 flex flex-col transition-all duration-300 ${
-          sidebarCollapsed ? "lg:ml-24" : "lg:ml-72"
-        }`}
+        className={`
+    flex
+    h-dvh
+    flex-col
+    overflow-hidden
+    transition-all
+    duration-300
+    ${sidebarCollapsed ? "lg:ml-24" : "lg:ml-72"}
+  `}
       >
+        {/* Navbar */}
+
         <Navbar
+          sidebarCollapsed={sidebarCollapsed}
           onMenuClick={() => setSidebarOpen(true)}
           onSettings={() => setSettingsOpen(true)}
         />
 
-        <main className="flex-1 overflow-y-auto p-6">
-          {settingsOpen && (
-            <SettingsModal
-              open={settingsOpen}
-              onClose={() => setSettingsOpen(false)}
-            />
-          )}
+        {/* Page */}
+
+        <main
+          className="
+    flex-1
+    min-h-0
+    overflow-y-auto
+    bg-slate-950
+    px-4
+    py-6
+    sm:px-6
+    lg:px-8
+  "
+        >
           <Outlet />
         </main>
       </div>
+
+      {/* Settings */}
+
+      <SettingsModal
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
     </div>
   );
 }

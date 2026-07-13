@@ -30,7 +30,7 @@ export default function Sidebar({
 fixed
 top-0
 left-0
-h-screen
+h-dvh
 overflow-hidden
 ${sidebarCollapsed ? "lg:w-24" : "lg:w-72"}
 bg-slate-900
