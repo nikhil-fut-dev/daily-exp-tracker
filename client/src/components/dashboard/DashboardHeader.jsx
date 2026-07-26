@@ -20,10 +20,6 @@ export default function DashboardHeader() {
   return (
     <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <p className="text-sm text-indigo-400 font-medium">
-          Dashboard Overview
-        </p>
-
         <h1 className="mt-2 text-3xl font-bold text-white">{greeting}</h1>
 
         <p className="mt-2 text-slate-400">
